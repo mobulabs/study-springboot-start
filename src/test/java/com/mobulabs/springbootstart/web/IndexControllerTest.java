@@ -15,7 +15,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 public class IndexControllerTest {
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    TestRestTemplate restTemplate;
 
     @Test
     public void load_mainpage() {
