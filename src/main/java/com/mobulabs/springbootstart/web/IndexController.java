@@ -1,5 +1,6 @@
 package com.mobulabs.springbootstart.web;
 
+import com.mobulabs.springbootstart.config.auth.LoginUser;
 import com.mobulabs.springbootstart.config.auth.dto.SessionUser;
 import com.mobulabs.springbootstart.services.posts.PostsService;
 import com.mobulabs.springbootstart.web.dto.PostsResponseDto;
@@ -16,12 +17,10 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
