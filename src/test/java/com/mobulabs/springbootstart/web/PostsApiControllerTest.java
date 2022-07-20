@@ -59,7 +59,7 @@ public class PostsApiControllerTest {
 
     @Test
     @WithMockUser(roles = "USER")
-    public void Posts_등록된다() throws Exception {
+    public void Posts_is_registered() throws Exception {
         String title = "title";
         String content = "content";
         PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
@@ -82,7 +82,7 @@ public class PostsApiControllerTest {
 
     @Test
     @WithMockUser(roles = "USER")
-    public void Posts_수정된다() throws Exception {
+    public void Posts_is_modified() throws Exception {
         Posts savePosts = postsRepository.save(Posts.builder()
                 .title("title")
                 .content("content")
