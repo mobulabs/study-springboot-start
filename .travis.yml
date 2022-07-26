@@ -16,6 +16,22 @@ cache:
 
 script: "./gradlew clean build"
 
+before_deploy:
+  - zip -r study-springboot-start *
+  - mkdir -p deploy
+  - mv study-springboot-start.zip deploy/study-springboot-start.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: study-springboot-builds
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
+
 notifications:
   email:
     recipients:
